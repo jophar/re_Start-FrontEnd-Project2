@@ -1,0 +1,40 @@
+.header {
+    display: flex;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    max-width: 1200px;
+}
+
+.menuItem {
+    margin-left: 5px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.mainMenu {
+    display: flex;
+    align-items: center;
+    margin-left: 50px;
+}
+
+.loginMenu {
+    display: flex;
+    align-items: center;
+    visibility: hidden;
+}
+
+.registerMenu {
+    display: flex;
+    align-items: center;
+    visibility: visible;
+}
+
+.fa-regular {
+    cursor: pointer;
+}
+
+.fa-solid {
+    cursor: pointer;
+}
