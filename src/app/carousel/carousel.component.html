@@ -1,0 +1,15 @@
+<div class="container">
+
+    <ngb-carousel>
+        <ng-template ngbSlide *ngFor="let image of images">
+            <div class="d-block w-100">
+                <img [src]="image.src">
+            </div>
+        </ng-template>
+    </ngb-carousel>
+    
+    <div class="textOverImage">
+        <h3>SALDOS</h3>
+    </div>
+
+</div>
