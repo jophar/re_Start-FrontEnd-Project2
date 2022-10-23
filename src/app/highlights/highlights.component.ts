@@ -24,6 +24,7 @@ export class HighlightsComponent implements OnInit {
         this.jsonplaceholder.getHighlights().subscribe({
             next : product => {
             this.productArray = product;
+            this.productTotal = this.productArray.length;
           },
             error : error => {
             console.log("Ocorreu um erro!"+ error);
@@ -31,8 +32,6 @@ export class HighlightsComponent implements OnInit {
           },
         });
 
-          console.log(this.productArray[0]);
+          console.log(this.productTotal);
   }
-
-
 }

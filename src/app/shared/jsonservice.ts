@@ -21,21 +21,13 @@ import { User } from './user';
       } else {
         mensagem = "Ocorreu um erro";
       }
-      // erro.message
+      
       const err = new Error(mensagem);
       return throwError( () => err)
     }
   
     getProducts() {
-
-      return this.http.get<Product[]>(this.urlApiProducts, { observe : 'response' })
-        .pipe(
-          // tap(registos => {
-          //   console.log(registos);
-          // }),
-          // catchError(err => of([])) // never[]
-          catchError(this.processaErro)
-        );
+      return this.http.get<Product[]>(this.urlApiProducts, { observe : 'response' });
     }
 
     getHighlights() {
@@ -43,15 +35,7 @@ import { User } from './user';
     }
 
     getUsers() {
-
-        return this.http.get<User[]>(`${this.urlApiUsers}`, { observe : 'response' })
-          .pipe(
-            // tap(registos => {
-            //   console.log(registos);
-            // }),
-            // catchError(err => of([])) // never[]
-            catchError(this.processaErro)
-          );
+        return this.http.get<User[]>(`${this.urlApiUsers}`, { observe : 'response' });
       }
   }
   
