@@ -1,3 +1,4 @@
+{
 "produtos": [
 {
 	"id": 1,
@@ -153,4 +154,28 @@
 	"foto_principal": "slim_fit_moleskin_trousers_1.jpg",
 	"foto_secundaria": "slim_fit_moleskin_trousers_2.jpg"
 }
-]
+],
+    "users" : [
+        {
+            "id" : 1,
+            "nome" : "Just a test name",
+            "email" : "testmail@test.com",
+            "senha" : "randompassword",
+            "morada" : "Rua de qualquer sitio nº 1",
+            "codigoPostal" : "1000-000",
+            "pais" : "Portugal",
+            "admin": false
+        },
+        {
+            "id" : 2,
+            "nome" : "Another test name",
+            "email" : "testmail2@test.com",
+            "senha" : "randompassword",
+            "morada" : "Rua de qualquer sitio nº 1",
+            "codigoPostal" : "1000-000",
+            "pais" : "Portugal",
+            "admin": true
+        }
+        
+    ] 
+}
