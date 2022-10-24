@@ -1,7 +1,8 @@
 import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
-import { JsonService } from '../shared/jsonservice';
+import { JsonService } from '../shared/json.service';
 import { Product } from '../shared/product';
+import { User } from '../shared/user';
 
 @Component({
   selector: 'app-highlights',
@@ -11,6 +12,7 @@ import { Product } from '../shared/product';
 export class HighlightsComponent implements OnInit {
 
   productArray : Product[] = [];
+  userArray : User[] = [];
   productTotal : number = 0;
   erro : string = "";
 
@@ -18,6 +20,7 @@ export class HighlightsComponent implements OnInit {
 
   ngOnInit(): void {
     this.readProductDataFromServer();
+    //this.readUsersFromDB();
   }
 
   readProductDataFromServer() {
@@ -25,13 +28,19 @@ export class HighlightsComponent implements OnInit {
             next : product => {
             this.productArray = product;
             this.productTotal = this.productArray.length;
+            console.log(this.productTotal);
           },
             error : error => {
             console.log("Ocorreu um erro!"+ error);
             this.erro = error;
-          },
+          }
         });
+  }
 
-          console.log(this.productTotal);
+  readUsersFromDB() {
+    this.jsonplaceholder.getUsers().subscribe({
+      next : user => { this.userArray = user.body!; } 
+    })
+    console.log(this.userArray.length);
   }
 }

@@ -31,7 +31,7 @@ import { User } from './user';
     }
 
     getHighlights() {
-        return this.http.get<Product[]>(`${this.urlApiProducts}?$destaque_like=true`);
+      return this.http.get<Product[]>(`${this.urlApiProducts}?$destaque_like=true`);
     }
 
     getUsers() {

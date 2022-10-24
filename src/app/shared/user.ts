@@ -4,6 +4,8 @@ export type User = {
     email : string,
     senha : string,
     morada : string,
-    codpost : string,
-    pais : string
+    codigoPostal : string,
+    pais : string,
+    active : boolean,
+    admin : boolean
 }
