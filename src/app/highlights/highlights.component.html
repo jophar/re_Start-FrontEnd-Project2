@@ -1,9 +1,11 @@
-<div class = "title">
-    <p>DESTAQUES</p>
-</div>
+<div class="highlightContainer">
+    <div class="title">
+        <p>DESTAQUES</p>
+    </div>
 
-<div class = "highlights">
-    <div class = "highlightProduct" *ngFor="let product of productArray">
-        <img src="../../assets/img/{{ product.foto_principal }}">
+    <div class="highlights">
+        <div class="highlightProduct" *ngFor="let product of productArray">
+            <a [routerLink]="['/productDetail', product.id ]"><img src="../../assets/img/{{ product.foto_principal }}"></a>
+        </div>
     </div>
 </div>

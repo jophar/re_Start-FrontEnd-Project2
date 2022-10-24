@@ -1,3 +1,8 @@
+.highlightContainer{
+    max-width: 1216px;
+    margin: 0 auto 0 auto;
+}
+
 .title {
     display: flex;
     font-size: 40px;
@@ -9,12 +14,19 @@
 .highlights {
     display: flex;
     flex-wrap: wrap;
-    max-width: 1200px;
-    margin: 0 auto 0 auto;
+    justify-content: center;
+    max-width: 1216px;
+
 }
 
 .highlightProduct {
-    max-width: 300px;
-    max-height: 400px;
+    max-width: 100%;
+    max-height: 100%;
+    border: 2px solid transparent;
+
+}
+
+.highlightProduct:hover {
+    border: 2px solid red;
 }
 
