@@ -2,6 +2,8 @@
     <p>DESTAQUES</p>
 </div>
 
-<li class = "highlights">
-   <!-- {{ userArray[0].id }} -->
-</li>
+<div class = "highlights">
+    <div class = "highlightProduct" *ngFor="let product of productArray">
+        <img src="../../assets/img/{{ product.foto_principal }}">
+    </div>
+</div>

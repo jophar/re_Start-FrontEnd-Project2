@@ -9,6 +9,7 @@ import { User } from '../shared/user';
   templateUrl: './highlights.component.html',
   styleUrls: ['./highlights.component.css']
 })
+
 export class HighlightsComponent implements OnInit {
 
   productArray : Product[] = [];
@@ -16,7 +17,7 @@ export class HighlightsComponent implements OnInit {
   productTotal : number = 0;
   erro : string = "";
 
-  constructor(private jsonplaceholder : JsonService) { }
+  constructor(private serverConnect : JsonService) { }
 
   ngOnInit(): void {
     this.readProductDataFromServer();
@@ -24,9 +25,9 @@ export class HighlightsComponent implements OnInit {
   }
 
   readProductDataFromServer() {
-        this.jsonplaceholder.getHighlights().subscribe({
+        this.serverConnect.getHighlights().subscribe({
             next : product => {
-            this.productArray = product;
+            this.productArray = product.body!;
             this.productTotal = this.productArray.length;
             console.log(this.productTotal);
           },
@@ -38,7 +39,7 @@ export class HighlightsComponent implements OnInit {
   }
 
   readUsersFromDB() {
-    this.jsonplaceholder.getUsers().subscribe({
+    this.serverConnect.getUsers().subscribe({
       next : user => { this.userArray = user.body!; } 
     })
     console.log(this.userArray.length);

@@ -8,8 +8,13 @@
 
 .highlights {
     display: flex;
+    flex-wrap: wrap;
     max-width: 1200px;
     margin: 0 auto 0 auto;
-    border: 1px solid purple;
+}
+
+.highlightProduct {
+    max-width: 300px;
+    max-height: 400px;
 }
 

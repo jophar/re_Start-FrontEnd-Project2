@@ -6,7 +6,6 @@
     justify-content: center;
     position: relative;
     max-width: 1200px;
-    border: 1px solid red;
     z-index: 9;
 }
 
@@ -20,7 +19,6 @@
     display: flex;
     align-items: center;
     position: absolute;
-    border: 1px solid green;
     left: 50%;
     transform: translate(-50%)
 }
@@ -32,7 +30,6 @@
     position: absolute;
     right: 50px;
     top: 25px;
-    border: 1px solid blue;
 }
 
 .registerMenu {
@@ -41,7 +38,6 @@
     visibility: visible;
     position: absolute;
     right: 50px;
-    border: 1px solid blue;
 }
 
 .fa-regular {
