@@ -1,4 +1,3 @@
-import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { JsonService } from '../shared/json.service';
 import { Product } from '../shared/product';
