@@ -6,6 +6,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 0.0.1 - Inicial WebPage
 
+      - JSON Server interactions are working
+
 0.1.0 - Landing page complete with all the required features
 
 0.2.0 - Working Product Detail component
