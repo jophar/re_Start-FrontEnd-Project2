@@ -2,6 +2,12 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.3.
 
+## Versions
+
+0.0.1 - Inicial WebPage
+0.1.0 - Landing page complete with all the required features
+0.2.0 - Working Product Detail component
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
