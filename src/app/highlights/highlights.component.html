@@ -5,7 +5,7 @@
 
     <div class="highlights">
         <div class="highlightProduct" *ngFor="let product of productArray">
-            <a [routerLink]="['/productDetail', product.id ]"><img src="../../assets/img/{{ product.foto_principal }}"></a>
+            <a [routerLink]="['/productDetail', product.id ]" routerLinkActive="active"><img src="../../assets/img/{{ product.foto_principal }}"></a>
         </div>
     </div>
 </div>

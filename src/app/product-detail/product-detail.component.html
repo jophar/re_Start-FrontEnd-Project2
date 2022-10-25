@@ -1,7 +1,11 @@
-<app-header></app-header>
-
-<div class = "productContainer">
-    
+<div class = "produtDetailContainer">
+    <div class = "productBrand">{{ productToShow.marca }}</div>
+    <div class = "productName">{{ productToShow.nome }}</div>
+    <div class = "photoContainer">
+        <div class = "photoLeft"><img src = "../../assets/img/{{ productToShow.foto_principal }}"></div>
+        <div class = "photoRight"><img src = "../../assets/img/{{ productToShow.foto_secundaria }}"></div>
+    </div>
+    <div class = "typeAndColor">{{ productToShow.tipo_de_produto }} {{ productToShow.cor }}</div>
+    <div class = "price">{{ productToShow.preco }}€</div>
+    <div class = "productDescription">{{ productToShow.descricao }}</div>
 </div>
-
-<app-footer></app-footer>

@@ -30,6 +30,10 @@ import { User } from './user';
       return this.http.get<Product[]>(this.urlApiProducts, { observe : 'response' });
     }
 
+    getOneProduct(id : number) {
+      return this.http.get<Product>(`${this.urlApiProducts}/${id}`);
+    }
+
     getHighlights() {
       return this.http.get<Product[]>(`${this.urlApiProducts}?destaque_like=true`, { observe: 'response' });
     }

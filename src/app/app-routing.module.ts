@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
-  {path : 'productDetail', component : ProductDetailComponent}
+  { path : '', component : HomeComponent },
+  { path : 'productDetail/:id', component : ProductDetailComponent }
 ];
 
 @NgModule({

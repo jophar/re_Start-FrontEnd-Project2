@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { JsonService } from '../shared/json.service';
+import { Product } from '../shared/product';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-product-detail',
@@ -7,9 +10,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductDetailComponent implements OnInit {
 
-  constructor() { }
+  constructor(private actRoute : ActivatedRoute, private serverConnect : JsonService) { }
+
+  productToShow! : Product;
+  productId! : number;
+
 
   ngOnInit(): void {
+    this.actRoute.paramMap.subscribe((params) => { this.productId = Number(params.get('id')); });
+    // this.productId = +this.actRoute.snapshot.paramMap.get('id')!;
+    this.readProductInfo(Number(this.productId)); 
+
+  }
+
+  readProductInfo(id : number) {
+    this.serverConnect.getOneProduct(id).subscribe({ next: prod => { this.productToShow = prod!; } }); 
+    console.log(this.productId);
   }
 
 }
