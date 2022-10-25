@@ -39,8 +39,8 @@ import { User } from './user';
     }
 
     getUsers() {
-        return this.http.get<User[]>(`${this.urlApiUsers}`, { observe : 'response' });
-      }
+      return this.http.get<User[]>(`${this.urlApiUsers}`, { observe : 'response' });
+    }
   }
   
 
