@@ -31,7 +31,7 @@
                 <li class="nav-item dropdown"><a class="nav-link" href="#">Homem</a>
                     <ul class="dropdown-menu">
                         <li *ngFor="let menuItem of maleSubMenu">
-                            <a class="dropdown-item" href="#">{{ menuItem }}</a>
+                            <a class="dropdown-item" [routerLink]="['/productBrowse', 'Homem', menuItem ]" routerLinkActive="active">{{ menuItem }}</a>
                         </li>
                     </ul>
                 </li>
@@ -39,7 +39,7 @@
                 <li class="nav-item dropdown"><a class="nav-link" href="#">Mulher</a>
                     <ul class="dropdown-menu">
                         <li *ngFor="let menuItem of womanSubMenu">
-                            <a class="dropdown-item" href="#">{{ menuItem }}</a>
+                            <a class="dropdown-item" [routerLink]="['/productBrowse', 'Mulher', menuItem ]" routerLinkActive="active">{{ menuItem }}</a>
                         </li>
                     </ul>
                 </li>
@@ -48,7 +48,7 @@
                 <li class="nav-item dropdown"><a class="nav-link" href="#">Criança</a>
                     <ul class="dropdown-menu">
                         <li *ngFor="let menuItem of kinderSubMenu">
-                            <a class="dropdown-item" href="#">{{ menuItem }}</a>
+                            <a class="dropdown-item" [routerLink]="['/productBrowse', 'Criança', menuItem ]" routerLinkActive="active">{{ menuItem }}</a>
                         </li>
                     </ul>
                 </li>
@@ -56,7 +56,7 @@
                 <li class="nav-item dropdown"><a href="#" class="nav-link" data-toggle="dropdown">Acessórios</a>
                     <ul class="dropdown-menu">
                         <li *ngFor="let menuItem of accessoriesSubMenu">
-                            <a class="dropdown-item" href="#">{{ menuItem }}</a>
+                            <a class="dropdown-item" [routerLink]="['/productBrowse', 'Acessórios', menuItem ]" routerLinkActive="active">{{ menuItem }}</a>
                         </li>
                     </ul>
                 </li>

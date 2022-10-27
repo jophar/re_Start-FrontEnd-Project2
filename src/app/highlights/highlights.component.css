@@ -16,7 +16,6 @@
     flex-wrap: wrap;
     justify-content: center;
     max-width: 1216px;
-
 }
 
 .highlightProduct {
@@ -27,6 +26,6 @@
 }
 
 .highlightProduct:hover {
-    border: 2px solid red;
+    border: 2px solid #CC071E;
 }
 

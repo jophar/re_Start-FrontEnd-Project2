@@ -38,6 +38,10 @@ import { User } from './user';
       return this.http.get<Product[]>(`${this.urlApiProducts}?destaque_like=true`, { observe: 'response' });
     }
 
+    getProductsByType(type : string) {
+      return this.http.get<Product[]>(`${this.urlApiProducts}?tipo_de_produto=${type}`, { observe: 'response' });
+    }
+
     getUsers() {
       return this.http.get<User[]>(`${this.urlApiUsers}`, { observe : 'response' });
     }

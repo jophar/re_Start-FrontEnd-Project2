@@ -1,1 +1,28 @@
-<p>product-browse works!</p>
+<div class = "productBrowseContainer" >
+
+    <div class = "leftMenu">
+        <p>{{ currentProductSubType }}</p>
+        <p>{{ currentProductType }}</p>
+    </div>
+
+    <div class = "rightProductDisplay">
+
+        <div class = "productType">
+            <p>{{ currentProductType }}<p>
+        </div>
+
+        <div class = "productCount">        
+            <p>Total de Resultados {{ activeProducts.length }}</p>
+        </div>
+
+        <div class="viewContainer">
+            <div class = "productCard" *ngFor="let product of activeProducts">
+                <a [routerLink]="['/productDetail', product.id ]" routerLinkActive="active" ><img src="../../assets/img/{{ product.foto_principal }}"></a>
+            </div>
+        </div>
+
+        <div class = "viewMore" *ngIf = "activeProducts.length > 6">
+            Ver Mais
+        </div>
+    </div>
+</div>

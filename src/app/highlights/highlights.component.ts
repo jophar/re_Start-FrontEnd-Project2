@@ -24,17 +24,16 @@ export class HighlightsComponent implements OnInit {
   }
 
   readProductDataFromServer() {
-        this.serverConnect.getHighlights().subscribe({
-            next : product => {
-            this.productArray = product.body!;
-            this.productTotal = this.productArray.length;
-            console.log(this.productTotal);
-          },
-            error : error => {
-            console.log("Ocorreu um erro!"+ error);
-            this.erro = error;
-          }
-        });
+    this.serverConnect.getHighlights().subscribe({
+      next : product => {
+      this.productArray = product.body!;
+      this.productTotal = this.productArray.length;
+      console.log(this.productTotal);
+      },
+      error : error => {
+        console.log("Ocorreu um erro!"+ error);
+        this.erro = error;
+      }});
   }
 
   readUsersFromDB() {
