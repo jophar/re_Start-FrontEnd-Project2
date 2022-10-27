@@ -28,6 +28,8 @@ export class ProductBrowseComponent implements OnInit{
   accessoriesSubMenu : string [] = ["Malas", "Pulseiras", "Aneis"];
   accessoriesSubMenuDB : string [] = ["Mala", "Pulseira", "Anel"];
 
+  starActive : Boolean = false;
+
   ngOnInit(): void {
     this.actRoute.paramMap.subscribe((params) => { 
       this.currentProductType = params.get('type')!;
@@ -69,6 +71,13 @@ export class ProductBrowseComponent implements OnInit{
   testing() {
     console.log(this.activeProductsNumber);
     
+  }
+
+  addToWishlist(id : number) {
+
+    if(!this.starActive) { this.starActive = true; }
+      else { this.starActive = false; }
+
   }
 
 }

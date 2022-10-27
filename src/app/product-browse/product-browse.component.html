@@ -12,12 +12,20 @@
         </div>
 
         <div class = "productCount">        
-            <p>Total de Resultados {{ activeProducts.length }}</p>
+            <p>Total de Resultados: {{ activeProducts.length }}</p>
         </div>
 
         <div class="viewContainer">
             <div class = "productCard" *ngFor="let product of activeProducts">
-                <a [routerLink]="['/productDetail', product.id ]" routerLinkActive="active" ><img src="../../assets/img/{{ product.foto_principal }}"></a>
+                <a [routerLink]="['/productDetail', product.id ]" routerLinkActive="active" >
+
+                    <app-product-card [productInfo]="product"></app-product-card>
+
+                    
+                </a>
+                <div class = "star" (click)="addToWishlist(product.id!)">
+                    <i class="far fa-star" *ngIf="!starActive"></i><i class="fas fa-star" *ngIf="starActive"></i>
+                </div>
             </div>
         </div>
 

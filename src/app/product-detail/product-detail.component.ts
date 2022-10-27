@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { JsonService } from '../shared/json.service';
 import { Product } from '../shared/product';
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-product-detail',
@@ -10,7 +11,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 })
 export class ProductDetailComponent implements OnInit {
 
-  constructor(private actRoute : ActivatedRoute, private serverConnect : JsonService) { }
+  constructor(private actRoute : ActivatedRoute, private serverConnect : JsonService, private loc : Location) { }
 
   productToShow! : Product;
   productId! : number;
@@ -26,6 +27,10 @@ export class ProductDetailComponent implements OnInit {
   readProductInfo(id : number) {
     this.serverConnect.getOneProduct(id).subscribe({ next: prod => { this.productToShow = prod!; } }); 
     console.log(this.productId);
+  }
+
+  back() {
+    this.loc.back();
   }
 
 }

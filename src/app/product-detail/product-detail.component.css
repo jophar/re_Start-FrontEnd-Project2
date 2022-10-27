@@ -1,7 +1,15 @@
 .produtDetailContainer{
+    position: relative;
     display: block;
     max-width: 1200px;
     margin: 30px auto 30px auto;
+}
+
+.backButton  {
+    position: absolute;
+    top: 20px;
+    left: 100px;
+    cursor: pointer;
 }
 
 .productBrand {
