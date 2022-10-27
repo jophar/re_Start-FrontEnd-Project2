@@ -8,7 +8,8 @@
 .leftMenu {
     max-width: 210px;
     width:100%;
-    border: 1px solid green;
+    height: 100%;
+    border: 2px solid black;
 }
 
 .rightProductDisplay {
@@ -17,7 +18,6 @@
     text-align: center;
     max-width: 990px;
     width: 100%;
-    border: 1px solid red
 }
 
 .productType {
@@ -61,4 +61,10 @@
 a {
     text-decoration: none;
     color: black;
+}
+
+.leftMenuTopper {
+    background-color: #CC071E;
+    color: white;
+    text-align: center;
 }

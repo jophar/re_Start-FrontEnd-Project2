@@ -11,7 +11,9 @@ import { Product } from '../shared/product';
 })
 export class ProductBrowseComponent implements OnInit{
 
-  constructor(private actRoute: ActivatedRoute, private serverConnect: JsonService) { }
+  constructor(private actRoute: ActivatedRoute, private serverConnect: JsonService) { 
+
+  }
 
   currentProductSubType : string = "";
   currentProductSubTypeCorrected : string = "";
@@ -19,6 +21,10 @@ export class ProductBrowseComponent implements OnInit{
 
   activeProducts! : Product[];
   activeProductsNumber : number = 0;
+  allProducts! : Product[];
+
+  typeList : string[] = [];
+  colorList : string[] = [];
 
   maleSubMenu : string[] = ["Casacos", "Camisas", "Calças", "Sweatshirts", "Polos", "Sapatos", "T-Shirts", "Todos"];
   maleSubMenuDB : string[] = ["Casaco", "Camisa", "Calças", "Sweatshirt", "Polo", "Sapatos", "T-Shirt", "Todos"];
@@ -37,13 +43,15 @@ export class ProductBrowseComponent implements OnInit{
       this.correctProductSubtype(this.currentProductSubType);
       this.getProductsByType();
     });
+    
+    this.getAllProductsSorted();
+
   }
 
   correctProductSubtype(subType : string) {
     switch(this.currentProductType) {
       case "Homem" : { 
         this.currentProductSubTypeCorrected = this.maleSubMenuDB[this.maleSubMenu.indexOf(subType)]; 
-        console.log(subType);
       } break;
 
       case "Mulher" : { this.currentProductSubTypeCorrected = this.womanSubMenuDB[this.womanSubMenu.indexOf(subType)]; } break;
@@ -68,16 +76,35 @@ export class ProductBrowseComponent implements OnInit{
     }
   }
 
-  testing() {
-    console.log(this.activeProductsNumber);
-    
-  }
-
   addToWishlist(id : number) {
-
     if(!this.starActive) { this.starActive = true; }
       else { this.starActive = false; }
+  }
 
+  getTypeList() {
+    var tempTypeList! : string[];
+
+    for(let p of this.allProducts)
+      tempTypeList.push(p.tipo_de_produto);
+  
+    this.typeList = [...new Set(tempTypeList)];
+  }
+  
+
+  getColorList() {
+
+  }
+
+  getAllProductsSorted() {
+    this.serverConnect.getProducts().subscribe({
+      next : product => {
+      this.allProducts = product.body!.sort((a, b) => (a.tipo_de_produto > b.tipo_de_produto) ? 1 : -1);
+    }});
+
+    for(var p of this.allProducts)
+      this.typeList.push(p.tipo_de_produto);
+
+    this.typeList = [...new Set(this.typeList)];
   }
 
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { JsonService } from '../shared/json.service';
 import { Product } from '../shared/product';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 @Component({
@@ -19,7 +19,6 @@ export class ProductDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.actRoute.paramMap.subscribe((params) => { this.productId = Number(params.get('id')); });
-    // this.productId = +this.actRoute.snapshot.paramMap.get('id')!;
     this.readProductInfo(Number(this.productId)); 
 
   }
