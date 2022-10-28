@@ -1,1 +1,44 @@
-<p>product-browse works!</p>
+<div class = "productBrowseContainer" >
+
+    <div class = "leftMenu">
+        <div>
+            <div class = "leftMenuTopper">Tipo</div>
+            <div class = "typeFilter" *ngFor="let p of typeList">
+                <p><input type = "radio" (change)="productSelector(p)" name = "selector" >{{ p }}</p>
+            </div>
+        </div>
+
+        <div>
+            <div class = "leftMenuTopper">Cor</div>
+            <div class = "colorFilter" *ngFor="let p of colorList">
+                <p><input type = "radio" (change) = "productSelector(p)" name = "colorSelector">{{ p }}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class = "rightProductDisplay">
+
+        <div class = "productType">
+            <p>{{ currentProductType }}<p>
+        </div>
+
+        <div class = "productCount">        
+            <p>Total de Resultados: {{ activeProductsNumber }}</p>
+        </div>
+
+        <div class="viewContainer">
+            <div class = "productCard" *ngFor="let product of activeProducts">
+                <a [routerLink]="['/productDetail', product.id ]" routerLinkActive="active" >
+                    <app-product-card [productInfo]="product"></app-product-card>
+                </a>
+
+                <div class = "star" (click)="addToWishlist(product.id!)">
+                    <i class="far fa-star" *ngIf="!starActive"></i><i class="fas fa-star" *ngIf="starActive"></i>
+                </div>
+
+            </div>
+        </div>
+
+        <button class = "viewMore" type="button" (click)="moreProducts()" *ngIf="activeProductsNumber > 6">Ver Mais {{numRecords}} produtos</button>
+    </div>
+</div>

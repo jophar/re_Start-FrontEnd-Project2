@@ -11,6 +11,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { HomeComponent } from './home/home.component';
 import { ProductBrowseComponent } from './product-browse/product-browse.component';
+import { ProductCardComponent } from './product-card/product-card.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { UserPageComponent } from './user-page/user-page.component';
+import { AdminPageComponent } from './admin-page/admin-page.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +26,12 @@ import { ProductBrowseComponent } from './product-browse/product-browse.componen
     HighlightsComponent,
     ProductDetailComponent,
     HomeComponent,
-    ProductBrowseComponent
+    ProductBrowseComponent,
+    ProductCardComponent,
+    LoginComponent,
+    RegisterComponent,
+    UserPageComponent,
+    AdminPageComponent
   ],
   imports: [
     BrowserModule,
