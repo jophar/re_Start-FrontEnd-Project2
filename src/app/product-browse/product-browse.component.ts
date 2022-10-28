@@ -11,9 +11,7 @@ import { Product } from '../shared/product';
 })
 export class ProductBrowseComponent implements OnInit{
 
-  constructor(private actRoute: ActivatedRoute, private serverConnect: JsonService) { 
-
-  }
+  constructor(private actRoute: ActivatedRoute, private serverConnect: JsonService) { }
 
   currentProductSubType : string = "";
   currentProductSubTypeCorrected : string = "";
@@ -36,15 +34,18 @@ export class ProductBrowseComponent implements OnInit{
 
   starActive : Boolean = false;
 
+  start : number = 0;
+  numRecords : number = 6;
+  totalRecords : number = 0;
+
   ngOnInit(): void {
     this.actRoute.paramMap.subscribe((params) => { 
       this.currentProductType = params.get('type')!;
       this.currentProductSubType = params.get('subMenu')!;
       this.correctProductSubtype(this.currentProductSubType);
       this.getProductsByType();
+      this.getAllProducts();
     });
-    
-    this.getAllProductsSorted();
 
   }
 
@@ -61,19 +62,37 @@ export class ProductBrowseComponent implements OnInit{
   }
 
   getProductsByType() {
-    if(this.currentProductSubTypeCorrected === "Todos") {
-      this.serverConnect.getProducts().subscribe({
-        next : product => {
-        this.activeProducts = product.body!.sort((a, b) => (a.tipo_de_produto > b.tipo_de_produto) ? 1 : -1);
-        this.activeProductsNumber = this.activeProducts.length;
-        }});
-    }
-    else {
-      this.serverConnect.getProductsByType(this.currentProductSubTypeCorrected).subscribe({
+      this.serverConnect.getProductsWithPages(this.currentProductSubTypeCorrected, this.start, this.numRecords).subscribe({
         next : product => {
         this.activeProducts = product.body!;
-        this.activeProductsNumber = this.activeProducts.length; }});
-    }
+        this.activeProductsNumber = Number(product.headers.get('x-total-count'));
+        }});   
+  }
+
+  getAllProducts() {
+    this.serverConnect.getProducts().subscribe({
+      next : p => {
+        this.allProducts = p.body!;
+
+        for(let p of this.allProducts) {
+          this.typeList.push(p.tipo_de_produto);
+        }
+
+        this.typeList.push("Todos");
+
+        this.typeList = [...new Set(this.typeList.sort())];
+
+        for(let p of this.allProducts) {
+          this.colorList.push(p.cor);
+        }
+
+        this.colorList = [...new Set(this.colorList.sort())];
+
+        this.colorList.push("Todos");
+
+      }
+    });
+    
   }
 
   addToWishlist(id : number) {
@@ -83,11 +102,13 @@ export class ProductBrowseComponent implements OnInit{
 
   getTypeList() {
     var tempTypeList! : string[];
-
-    for(let p of this.allProducts)
+    
+    for(let p of this.allProducts) {
       tempTypeList.push(p.tipo_de_produto);
-  
+    }
     this.typeList = [...new Set(tempTypeList)];
+
+    console.log(this.typeList);
   }
   
 
@@ -95,16 +116,19 @@ export class ProductBrowseComponent implements OnInit{
 
   }
 
-  getAllProductsSorted() {
-    this.serverConnect.getProducts().subscribe({
-      next : product => {
-      this.allProducts = product.body!.sort((a, b) => (a.tipo_de_produto > b.tipo_de_produto) ? 1 : -1);
-    }});
+  moreProducts() {
+    if ((this.start+this.numRecords)<this.totalRecords) {
+      this.start+=this.numRecords;
+      console.log(this.start);
+      console.log(this.numRecords);
+      console.log(this.totalRecords);
+      this.getProductsByType();
+    }
+  }
 
-    for(var p of this.allProducts)
-      this.typeList.push(p.tipo_de_produto);
-
-    this.typeList = [...new Set(this.typeList)];
+  productSelector(type : string) {
+    this.currentProductSubTypeCorrected = type;
+    this.getProductsByType();
   }
 
 }

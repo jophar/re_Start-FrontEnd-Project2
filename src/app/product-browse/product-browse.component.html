@@ -3,12 +3,17 @@
     <div class = "leftMenu">
         <div>
             <div class = "leftMenuTopper">Tipo</div>
-            <div class = "typeFilter" *ngFor="let type of typeList">
-                <p>X - {{ type }}</p>
+            <div class = "typeFilter" *ngFor="let p of typeList">
+                <p><input type = "radio" (change)="productSelector(p)" name = "selector" >{{ p }}</p>
             </div>
         </div>
 
-        <div class = "leftMenuTopper">Cor</div>
+        <div>
+            <div class = "leftMenuTopper">Cor</div>
+            <div class = "colorFilter" *ngFor="let p of colorList">
+                <p><input type = "radio" (change) = "productSelector(p)" name = "colorSelector">{{ p }}</p>
+            </div>
+        </div>
     </div>
 
     <div class = "rightProductDisplay">
@@ -18,7 +23,7 @@
         </div>
 
         <div class = "productCount">        
-            <p>Total de Resultados: {{ activeProducts.length }}</p>
+            <p>Total de Resultados: {{ activeProductsNumber }}</p>
         </div>
 
         <div class="viewContainer">
@@ -34,8 +39,6 @@
             </div>
         </div>
 
-        <div class = "viewMore" *ngIf = "activeProducts.length > 6">
-            Ver Mais
-        </div>
+        <button class = "viewMore" type="button" (click)="moreProducts()" *ngIf="activeProductsNumber > 6">Ver Mais {{numRecords}} produtos</button>
     </div>
 </div>
