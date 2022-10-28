@@ -68,3 +68,14 @@ a {
     color: white;
     text-align: center;
 }
+
+.viewMore {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+
+input {
+    margin-left: 10px;
+    margin-right: 20px;
+}

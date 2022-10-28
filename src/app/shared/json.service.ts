@@ -27,7 +27,7 @@ import { User } from './user';
     }
   
     getProducts() {
-      return this.http.get<Product[]>(this.urlApiProducts, { observe : 'response' });
+      return this.http.get<Product[]>(`${this.urlApiProducts}`, { observe : 'response' });
     }
 
     getOneProduct(id : number) {
@@ -44,6 +44,15 @@ import { User } from './user';
 
     getUsers() {
       return this.http.get<User[]>(`${this.urlApiUsers}`, { observe : 'response' });
+    }
+
+    getProductsWithPages(type : string, beg : number, fin : number) {
+      if(type === "Todos")
+        return this.http.get<Product[]>(`${this.urlApiProducts}?_start=${beg}&_limit=${fin}&_sort=tipo_de_produto&_order=asc`, { observe : 'response' })
+      .pipe(catchError(this.processaErro));
+      else
+        return this.http.get<Product[]>(`${this.urlApiProducts}?_start=${beg}&_limit=${fin}&_sort=tipo_de_produto&_order=asc&tipo_de_produto=${type}`, { observe : 'response' })
+      .pipe(catchError(this.processaErro));
     }
   }
   
