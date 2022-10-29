@@ -50,10 +50,7 @@ export class ProductBrowseComponent implements OnInit{
 
   correctProductSubtype(subType : string) {
     switch(this.currentProductType) {
-      case "Homem" : { 
-        this.currentProductSubTypeCorrected = this.maleSubMenuDB[this.maleSubMenu.indexOf(subType)]; 
-      } break;
-
+      case "Homem" : { this.currentProductSubTypeCorrected = this.maleSubMenuDB[this.maleSubMenu.indexOf(subType)]; } break;
       case "Mulher" : { this.currentProductSubTypeCorrected = this.womanSubMenuDB[this.womanSubMenu.indexOf(subType)]; } break;
       case "Criança" : { this.currentProductSubTypeCorrected = this.currentProductSubType } break;
       case "Acessórios" : { this.currentProductSubTypeCorrected = this.accessoriesSubMenuDB[this.accessoriesSubMenu.indexOf(subType)]; } break;
@@ -76,15 +73,15 @@ export class ProductBrowseComponent implements OnInit{
         this.getColorList();
       }
     });
-    
   }
-
-
 
   getTypeList() {
     for(let p of this.allProducts) {
       this.typeList.push(p.tipo_de_produto);
     }
+   // for(let i = 0; i <= this.colorList.length; i++) {
+   //   this.typeList[i] = this.maleSubMenu[this.typeList.indexOf(this.typeList[i])];
+   // }
     this.typeList.push("Todos");
     this.typeList = [...new Set(this.typeList.sort())];
   }
@@ -110,11 +107,15 @@ export class ProductBrowseComponent implements OnInit{
     this.getProductsByType();
   }
 
+  colorSelector(color : string) {
+    this.activeProducts = this.activeProducts.filter(p => p.cor === color);
+    this.activeProductsNumber = this.activeProducts.length;
+  }
+
   addToWishlist(id : number) {
     if(!this.starActive) { this.starActive = true; }
       else { this.starActive = false; }
   }
-
 }
 
  

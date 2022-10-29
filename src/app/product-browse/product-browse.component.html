@@ -11,7 +11,7 @@
         <div>
             <div class = "leftMenuTopper">Cor</div>
             <div class = "colorFilter" *ngFor="let p of colorList">
-                <p><input type = "radio" (change) = "productSelector(p)" name = "colorSelector">{{ p }}</p>
+                <p><input type = "radio" (change)="colorSelector(p)" name = "colorSelector">{{ p }}</p>
             </div>
         </div>
     </div>

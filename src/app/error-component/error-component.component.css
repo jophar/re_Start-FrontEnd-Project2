@@ -1,0 +1,23 @@
+.errorContainer {
+    display: block;
+    max-width: 1200px;
+    margin: 0px auto 0px auto;
+    align-items: center;
+    text-align: center;
+}
+
+.goButton {
+    background-color: #CC071E;
+    font-size: 25px;
+    color: white;
+    font-weight: bold;
+    max-width: 200px;
+    border-radius: 15px;
+    text-align: center;
+    margin: 20px auto 0px auto;
+    cursor: pointer;
+}
+
+img {
+    max-width: 100%;
+}
