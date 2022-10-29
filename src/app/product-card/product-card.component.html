@@ -1,3 +1,4 @@
+
 <div (mouseenter)="secondImage = true" (mouseleave)="secondImage = false">
     <div *ngIf="!secondImage"><img src="../../assets/img/{{ productInfo.foto_principal }}"></div>
     <div *ngIf="secondImage"><img  src="../../assets/img/{{ productInfo.foto_secundaria }}"></div>

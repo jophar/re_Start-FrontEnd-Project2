@@ -36,7 +36,6 @@ export class ProductBrowseComponent implements OnInit{
 
   start : number = 0;
   numRecords : number = 6;
-  totalRecords : number = 0;
 
   ngOnInit(): void {
     this.actRoute.paramMap.subscribe((params) => { 
@@ -73,55 +72,35 @@ export class ProductBrowseComponent implements OnInit{
     this.serverConnect.getProducts().subscribe({
       next : p => {
         this.allProducts = p.body!;
-
-        for(let p of this.allProducts) {
-          this.typeList.push(p.tipo_de_produto);
-        }
-
-        this.typeList.push("Todos");
-
-        this.typeList = [...new Set(this.typeList.sort())];
-
-        for(let p of this.allProducts) {
-          this.colorList.push(p.cor);
-        }
-
-        this.colorList = [...new Set(this.colorList.sort())];
-
-        this.colorList.push("Todos");
-
+        this.getTypeList();
+        this.getColorList();
       }
     });
     
   }
 
-  addToWishlist(id : number) {
-    if(!this.starActive) { this.starActive = true; }
-      else { this.starActive = false; }
-  }
+
 
   getTypeList() {
-    var tempTypeList! : string[];
-    
     for(let p of this.allProducts) {
-      tempTypeList.push(p.tipo_de_produto);
+      this.typeList.push(p.tipo_de_produto);
     }
-    this.typeList = [...new Set(tempTypeList)];
-
-    console.log(this.typeList);
+    this.typeList.push("Todos");
+    this.typeList = [...new Set(this.typeList.sort())];
   }
   
 
   getColorList() {
-
+    for(let p of this.allProducts) {
+      this.colorList.push(p.cor);
+    }
+    this.colorList = [...new Set(this.colorList.sort())];
+    this.colorList.push("Todos");
   }
 
   moreProducts() {
-    if ((this.start+this.numRecords)<this.totalRecords) {
-      this.start+=this.numRecords;
-      console.log(this.start);
-      console.log(this.numRecords);
-      console.log(this.totalRecords);
+    if (( this.start + this.numRecords ) < this.activeProductsNumber) {
+      this.numRecords += this.numRecords;
       this.getProductsByType();
     }
   }
@@ -129,6 +108,11 @@ export class ProductBrowseComponent implements OnInit{
   productSelector(type : string) {
     this.currentProductSubTypeCorrected = type;
     this.getProductsByType();
+  }
+
+  addToWishlist(id : number) {
+    if(!this.starActive) { this.starActive = true; }
+      else { this.starActive = false; }
   }
 
 }
