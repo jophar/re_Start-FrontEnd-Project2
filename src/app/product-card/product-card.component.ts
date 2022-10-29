@@ -12,10 +12,14 @@ export class ProductCardComponent implements OnInit {
 
   @Input() productInfo! : Product;
 
+  starActive : boolean = false;
   secondImage : boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {
   }
+
+
 
 }

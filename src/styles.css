@@ -2,3 +2,8 @@
 html {
     font-family: 'Open Sans', sans-serif;
 }
+
+body {
+    overflow: scroll; /* Show scrollbars */
+    font-family: 'Open Sans', sans-serif;
+}

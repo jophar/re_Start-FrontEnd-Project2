@@ -16,6 +16,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { UserPageComponent } from './user-page/user-page.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
+import { ErrorComponentComponent } from './error-component/error-component.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { AdminPageComponent } from './admin-page/admin-page.component';
     LoginComponent,
     RegisterComponent,
     UserPageComponent,
-    AdminPageComponent
+    AdminPageComponent,
+    ErrorComponentComponent
   ],
   imports: [
     BrowserModule,

@@ -38,7 +38,6 @@
 
 .productCard {
     position: relative;
-    border: 1px solid purple;
     max-width: 300px;
     max-height: 400px;
     width: 100%;
@@ -64,12 +63,16 @@ a {
 }
 
 .leftMenuTopper {
+    height: 30px;
     background-color: #CC071E;
     color: white;
     text-align: center;
 }
 
 .viewMore {
+    max-width: 900px;
+    max-height: 50px;
+    width: 100%;
     background-color: black;
     color: white;
     cursor: pointer;
