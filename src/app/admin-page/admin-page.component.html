@@ -44,6 +44,15 @@
 
     </form>
 
+
+    <div *ngIf = "this.productInsertOk == 1" class="alert alert-success" role="alert">
+        <h3>{{returnMessage}}</h3>
+    </div>
+
+    <div *ngIf = "this.productInsertOk == 2" class="alert alert-danger" role="alert">
+        <h3>{{returnMessage}}</h3>
+    </div>
+
     <div>
         <label>Pesquisa: </label><input type="text"><button type="button" class="btn btn-danger">Pesquisar</button>
     </div>

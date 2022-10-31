@@ -50,8 +50,73 @@
         </div>
 
         <div class="registerMenu">
-            <i class="fa-solid fa-user-plus fa-lg"></i>
-            <i class="fa-solid fa-arrow-right-to-bracket fa-lg" style="margin-left: 20px;"></i>
+
+                <i class="fa-solid fa-user-plus fa-lg" (click)="open(register)"></i>
+
+
+            <i
+                class="fa-solid fa-arrow-right-to-bracket fa-lg" 
+                style="margin-left: 20px;" 
+                (click)="open(login)">
+            </i>   
         </div>
     </div>
+
+    <ng-template #login let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Controlo de Acessos</h4>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="loginValidation">
+                <div class="mb-3">
+                  <label for="email" class="form-label">E-mail</label>
+                  <input type="email" class="form-control" id="email">
+                </div>
+                <div class="mb-3">
+                  <label for="senha" class="form-label">Password</label>
+                  <input type="password" class="form-control" id="senha">
+                </div>
+              </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger" (click)="modal.close('Save click')">Validar</button>
+        </div>
+    </ng-template>
+
+    <ng-template #register let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Registo Utilizador</h4>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="registerForm">
+                <div class="mb-3">
+                  <label for="nome" class="form-label">Nome</label>
+                  <input type="text" formControlName ="nome" class="form-control" id="nome">
+                </div>
+                <div class="mb-3">
+                  <label for="email" class="form-label">E-mail</label>
+                  <input type="email" formControlName ="email" class="form-control" id="email">
+                </div>
+                <div class="mb-3">
+                    <label for="senha" class="form-label">Senha</label>
+                    <input type="password" formControlName ="senha" class="form-control" id="senha">
+                </div>
+                <div class="mb-3">
+                    <label for="morada" class="form-label">Morada</label>
+                    <input type="text" class="form-control" formControlName ="morada" id="morawda">
+                </div>
+                <div class="mb-3">
+                    <label for="codigoPostal" class="form-label">Código Postal</label>
+                    <input type="text" class="form-control" formControlName ="codigoPostal" id="codigoPostal">
+                </div>
+                <div class="mb-3">
+                    <label for="pais" class="form-label">País</label>
+                    <input type="text" class="form-control" formControlName ="pais" id="pais">
+                </div>
+              </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger" (click)="registerUser()">Registar</button>
+        </div>
+    </ng-template>
 </nav>

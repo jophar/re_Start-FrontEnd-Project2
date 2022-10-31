@@ -5,7 +5,6 @@
 
 import { Component, HostListener, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule, ControlContainer } from '@angular/forms';
-import { ProductBrowseComponent } from '../product-browse/product-browse.component';
 import { JsonService } from '../shared/json.service';
 import { Product } from '../shared/product';
 
@@ -20,6 +19,8 @@ export class AdminPageComponent implements OnInit {
 
   insertProductForm! : FormGroup;
 
+  returnMessage : string = "";
+
   product! : Product;
   productToInsert! : Product;
   allProducts! : Product[];
@@ -27,6 +28,9 @@ export class AdminPageComponent implements OnInit {
   secondImage : boolean[] = [];
   deleteConfirm : boolean[] = [];
   
+  productInsertOk : number = 3;
+
+  numberOfHighlights : number = 0;
 
   constructor(private serverConnect: JsonService) { }
 
@@ -41,19 +45,37 @@ export class AdminPageComponent implements OnInit {
       preco: new FormControl(''),
       descricao: new  FormControl(''),
       destaque: new FormControl(''),
-      foto_principal: new FormControl(''),
-      foto_secundaria: new FormControl('')
+      foto_principal: new FormControl('no_image_yet.jpg'),
+      foto_secundaria: new FormControl('no_image_yet_2.jpg')
     });
   }
 
   insertProduct() {
-    if (this.insertProductForm.valid) { 
 
-      this.serverConnect.insertProductToDatabase(this.insertProductForm.value).subscribe(registoInserido => {
-        console.log(registoInserido);
-        this.getAllProducts();
-        console.log("ESTOU AQUI!");
-    });}
+    console.log(this.numberOfHighlights);
+    console.log(this.insertProductForm.value);
+    if (this.insertProductForm.valid && this.numberOfHighlights < 8) {
+
+      this.serverConnect.insertProductToDatabase(this.insertProductForm.value).subscribe(async registoInserido => {
+        let dataReturn = registoInserido;
+
+        if (dataReturn.status === 201) {
+          console.log(this.insertProductForm.value.foto_principal);
+          this.insertProductForm.reset({foto_principal: "no_image_yet.jpg", foto_secundaria: "no_image_yet_2.jpg"});
+          this.getAllProducts();
+          this.productInsertOk = 1;
+          this.returnMessage = "Produto inserido com sucesso";
+        }
+        else{
+          this.productInsertOk = 2;
+          this.returnMessage = "Erro na ligação à base de dados";
+        }
+      });
+    }
+    else {
+      this.productInsertOk = 2;
+      this.returnMessage = "Já existem 8 destaques. Tente editar ou eliminar primeiro";
+    }
   }
 
   getTypeList() {
@@ -68,6 +90,13 @@ export class AdminPageComponent implements OnInit {
       next : p => {
         this.allProducts = p.body!;
         this.getTypeList();
+        this.numberOfHighlights = 0;
+
+        for(let pro of this.allProducts){  
+          if(pro.destaque == true)
+           this.numberOfHighlights++;
+        }
+        
       }});
   }
 
@@ -78,5 +107,4 @@ export class AdminPageComponent implements OnInit {
       this.deleteConfirm = [];
     }});
  }
-
 }

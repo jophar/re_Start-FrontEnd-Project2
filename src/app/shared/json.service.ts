@@ -60,7 +60,11 @@ import { User } from './user';
     }
 
     insertProductToDatabase(p : Product) {
-      return this.http.post<Product>(this.urlApiProducts, p);
+      return this.http.post<Product>(this.urlApiProducts, p,  { observe : 'response' });
+    }
+
+    insertUserToDatabase(u : User) {
+      return this.http.post<User>(this.urlApiUsers, u);
     }
   }
   
