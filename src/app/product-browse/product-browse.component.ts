@@ -79,9 +79,6 @@ export class ProductBrowseComponent implements OnInit{
     for(let p of this.allProducts) {
       this.typeList.push(p.tipo_de_produto);
     }
-   // for(let i = 0; i <= this.colorList.length; i++) {
-   //   this.typeList[i] = this.maleSubMenu[this.typeList.indexOf(this.typeList[i])];
-   // }
     this.typeList.push("Todos");
     this.typeList = [...new Set(this.typeList.sort())];
   }

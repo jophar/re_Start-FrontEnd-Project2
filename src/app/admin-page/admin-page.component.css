@@ -1,0 +1,29 @@
+.adminPageContainer {
+    margin: 20px auto 0px auto;
+    max-width: 1000px;
+}
+
+img {
+    max-width: 100px;
+    max-height: 150px;
+}
+
+.tableHead {
+    color: white;
+    background-color: black;
+}
+
+.fa-check {
+    color: green;
+}
+
+.fa-pen-to-square, .fa-trash-can {
+    cursor: pointer;
+}
+
+
+.buttonArea{
+    display: block;
+    align-content:center;
+    max-width: 80px;
+}
