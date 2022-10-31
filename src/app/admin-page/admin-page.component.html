@@ -1,1 +1,102 @@
-<p>admin-page works!</p>
+<div class="adminPageContainer">
+    <h1>Gestão de Produtos</h1>
+
+    <form [formGroup]="insertProductForm" (ngSubmit)="insertProduct()">
+        <table>
+            <tr>
+                <td><label for="nome">Produto: </label></td> 
+                <td><input type="text" id="nome" formControlName="nome"></td>
+            </tr>
+            <tr>
+                <td><label for="marca">Marca: </label></td>
+                <td><input type="text" id="marca" formControlName="marca"></td>
+            </tr>
+            <tr>
+                <td><label for="tipo_de_produto">Tipo: </label></td>
+                <td>
+                    <select class="custom-select mr-sm-2" id="inlineFormCustomSelect tipo_de_produto" formControlName="tipo_de_produto">
+                        <option selected>-- Seleccionar um  tipo de produto --</option>                    
+                        <option value={{t}} *ngFor="let t of typeList" >{{t}}</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="cor">Cor: </label></td>
+                <td><input type="text" id="cor" formControlName="cor"></td>
+            </tr>
+            <tr>
+                <td><label for="preco">Preço: </label></td>
+                <td><input type="text" id="preco" formControlName="preco"></td>
+            </tr>
+            <tr>
+                <td><label for="descricao">Descrição: </label></td>
+                <td><input type="text" id="descricao" formControlName="descricao"></td>
+            </tr>
+            <tr>
+                <div class="form-check form-switch">
+                    <label class="form-check-label" for="flexSwitchCheckDefault destaque">Destaque:</label>
+                    <input mdbCheckbox class="form-check-input" type="checkbox" id="flexSwitchCheckDefault destaque" formControlName="destaque">
+                </div>
+            </tr>
+        </table>
+
+        <button type="submit" class="btn btn-danger">Inserir Produto</button>
+
+    </form>
+
+    <div>
+        <label>Pesquisa: </label><input type="text"><button type="button" class="btn btn-danger">Pesquisar</button>
+    </div>
+            
+    <!-- DEVIA COMEÇAR OUTRO COMPONENTE AQUI -->
+
+    <table class="table table-striped">
+        <thead class = "align-middle tableHead">
+          <tr>
+            <th scope="col">Foto</th>
+            <th scope="col">Marca</th>
+            <th scope="col">Produto</th>
+            <th scope="col">Tipo Produto</th>
+            <th scope="col">Cor</th>
+            <th scope="col">Preço</th>
+            <th scope="col">Descrição</th>
+            <th scope="col">Destaque</th>
+            <th scope="col">Operações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of allProducts; index as i">
+            <td>
+                <div (mouseenter)="secondImage[i] = true" (mouseleave)="secondImage[i] = false">
+                        <div *ngIf="!secondImage[i]"><img src="../../assets/img/{{ product.foto_principal }}"></div>
+                        <div *ngIf="secondImage[i]"><img  src="../../assets/img/{{ product.foto_secundaria }}"></div>
+                </div>
+            </td>
+            <td>{{product.marca}}</td>
+            <td>{{product.nome}}</td>
+            <td>{{product.tipo_de_produto}}</td>
+            <td>{{product.cor}}</td>
+            <td>{{product.preco}}</td>
+            <td>{{product.descricao}}</td>
+            <td>
+                <div *ngIf="product.destaque; else cross">
+                    <i class="fa-solid fa-check fa-xl"></i>
+                </div>
+                <ng-template #cross>
+                    <i class="fa-solid fa-xmark fa-xl"></i>
+                </ng-template>
+            </td>
+            <td>
+                <i class="fa-solid fa-pen-to-square fa-xl" style="margin-right: 10px;"></i>
+                <i class="fa-regular fa-trash-can fa-xl" (click)="deleteConfirm[i] = true"></i>
+                <p></p>
+                <div class ="buttonArea" *ngIf="deleteConfirm[i]">
+                    <p>Confirma?</p>
+                    <button type="button" class="btn btn-outline-success" (click)="deleteProduct(product.id!)">S</button>
+                    <button type="button" class="btn btn-outline-danger" (click)="deleteConfirm[i] = false" style="margin-left: 5px;">N</button>
+                </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+</div>

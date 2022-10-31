@@ -54,6 +54,14 @@ import { User } from './user';
         return this.http.get<Product[]>(`${this.urlApiProducts}?_start=${beg}&_limit=${fin}&_sort=tipo_de_produto&_order=asc&tipo_de_produto=${type}`, { observe : 'response' })
       .pipe(catchError(this.processaErro));
     }
+
+    deleteProductFromDatabase(id : number) {
+      return this.http.delete<Product>(`${this.urlApiProducts}/${id}`);
+    }
+
+    insertProductToDatabase(p : Product) {
+      return this.http.post<Product>(this.urlApiProducts, p);
+    }
   }
   
 
