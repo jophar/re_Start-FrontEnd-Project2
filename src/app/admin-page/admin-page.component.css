@@ -36,3 +36,20 @@ img {
     background-color: orange;
     border-color: orange;
 }
+
+.gestao {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 100px;
+}
+
+.vGreen {
+    color: green;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.vRed {
+    color: red;
+    cursor: pointer;
+}

@@ -1,46 +1,75 @@
 <div class="adminPageContainer">
-    <h1>Gestão de Produtos</h1>
-
-    <form [formGroup]="insertProductForm" (ngSubmit)="insertProduct()">
-        <table>
-            <tr>
-                <td><label for="nome">Produto: </label></td> 
-                <td><input type="text" id="nome" formControlName="nome"></td>
-            </tr>
-            <tr>
-                <td><label for="marca">Marca: </label></td>
-                <td><input type="text" id="marca" formControlName="marca"></td>
-            </tr>
-            <tr>
-                <td><label for="tipo_de_produto">Tipo: </label></td>
-                <td>
-                    <select class="custom-select mr-sm-2" id="inlineFormCustomSelect tipo_de_produto" formControlName="tipo_de_produto">
-                        <option selected>-- Seleccionar um  tipo de produto --</option>                    
-                        <option value={{t}} *ngFor="let t of typeList" >{{t}}</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td><label for="cor">Cor: </label></td>
-                <td><input type="text" id="cor" formControlName="cor"></td>
-            </tr>
-            <tr>
-                <td><label for="preco">Preço: </label></td>
-                <td><input type="text" id="preco" formControlName="preco"></td>
-            </tr>
-            <tr>
-                <td><label for="descricao">Descrição: </label></td>
-                <td><input type="text" id="descricao" formControlName="descricao"></td>
-            </tr>
-            <tr>
-                <div class="form-check form-switch">
-                    <label class="form-check-label" for="flexSwitchCheckDefault destaque">Destaque:</label>
-                    <input mdbCheckbox class="form-check-input" type="checkbox" id="flexSwitchCheckDefault destaque" formControlName="destaque">
-                </div>
-            </tr>
-        </table>
-        <button type="submit" class="btn btn-danger">Inserir Produto</button>
-    </form>
+    
+    <div class = "gestao">
+        
+        <div class="gestaoProdutos">
+            <h1>Gestão de Produtos</h1>
+            <form [formGroup]="insertProductForm" (ngSubmit)="insertProduct()">
+                <table>
+                    <tr>
+                        <td><label for="nome">Produto: </label></td>
+                        <td><input type="text" id="nome" formControlName="nome"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="marca">Marca: </label></td>
+                        <td><input type="text" id="marca" formControlName="marca"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="tipo_de_produto">Tipo: </label></td>
+                        <td>
+                            <select class="custom-select mr-sm-2" id="inlineFormCustomSelect tipo_de_produto"
+                                formControlName="tipo_de_produto">
+                                <option selected>-- Seleccionar um tipo de produto --</option>
+                                <option value={{t}} *ngFor="let t of typeList">{{t}}</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="cor">Cor: </label></td>
+                        <td><input type="text" id="cor" formControlName="cor"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="preco">Preço: </label></td>
+                        <td><input type="text" id="preco" formControlName="preco"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="descricao">Descrição: </label></td>
+                        <td><input type="text" id="descricao" formControlName="descricao"></td>
+                    </tr>
+                    <tr>
+                        <div class="form-check form-switch">
+                            <label class="form-check-label" for="flexSwitchCheckDefault destaque">Destaque:</label>
+                            <input mdbCheckbox class="form-check-input" type="checkbox" id="flexSwitchCheckDefault destaque"
+                                formControlName="destaque">
+                        </div>
+                    </tr>
+                </table>
+                <button type="submit" class="btn btn-danger">Inserir Produto</button>
+            </form>
+        </div>
+        <div class="gestaoPessoas">
+            <h1>Gestão de Utilizadores</h1>
+            <table class="table table-striped">
+                <thead class = "align-middle tableHead">
+                  <tr>
+                    <th scope="col">Nome</th>
+                    <th scope="col">E-mail</th>
+                    <th scope="col">Operações</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let u of userList; index as i">
+                    <td>{{u.nome}}</td>
+                    <td>{{u.email}}</td>
+                    <td>
+                        <i class="fa-solid fa-circle-check fa-xl vGreen" (click)="authorizeUser(u.id!)"></i>
+                        <i class="fa-solid fa-circle-xmark fa-xl vRed" (click)="deleteUser(u.id!)"></i>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
 
     <div *ngIf = "this.productInsertOk == 1" class="alert alert-success" role="alert">
@@ -54,7 +83,7 @@
         <label for="search">Pesquisa:</label>
         <input type="text" id = "search" #search>
         <button type="button" class="btn btn-danger" (click)="searchProduct(search.value)">Pesquisar</button>
-    </div>
+    </div> 
             
     <!-- DEVIA COMEÇAR OUTRO COMPONENTE AQUI -->
 

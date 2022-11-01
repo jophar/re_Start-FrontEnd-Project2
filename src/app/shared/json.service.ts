@@ -46,6 +46,14 @@ import { User } from './user';
       return this.http.get<User[]>(`${this.urlApiUsers}`, { observe : 'response' });
     }
 
+    getOneUser(id: number) {
+      return this.http.get<User>(`${this.urlApiUsers}/${id}`, { observe : 'response' });
+    }
+
+    getNonActiveUsers() {
+      return this.http.get<User[]>(`${this.urlApiUsers}?active=false`, { observe : 'response' });
+    }
+
     getProductsWithPages(type : string, beg : number, fin : number) {
       if(type === "Todos")
         return this.http.get<Product[]>(`${this.urlApiProducts}?_start=${beg}&_limit=${fin}&_sort=tipo_de_produto&_order=asc`, { observe : 'response' })
@@ -57,6 +65,14 @@ import { User } from './user';
 
     deleteProductFromDatabase(id : number) {
       return this.http.delete<Product>(`${this.urlApiProducts}/${id}`);
+    }
+
+    deleteUserFromDatabase(id: number) {
+      return this.http.delete<User>(`${this.urlApiUsers}/${id}`);
+    }
+
+    authorizeUserInSite(id: number, u: User) {
+      return this.http.put<User[]>(`${this.urlApiUsers}/${id}`, u, { observe : 'response' });
     }
 
     insertProductToDatabase(p : Product) {

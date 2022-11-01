@@ -7,6 +7,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule, ControlContainer } from '@angular/forms';
 import { JsonService } from '../shared/json.service';
 import { Product } from '../shared/product';
+import { User } from '../shared/user';
 
 @Component({
   selector: 'app-admin-page',
@@ -37,10 +38,15 @@ export class AdminPageComponent implements OnInit {
 
   page = 1;
 
+  userList : User[] = [];
+
+  oneUser! : User;
+
   constructor(private serverConnect: JsonService) { }
 
   ngOnInit(): void {
     this.getAllProducts();
+    this.getNonActiveUsers();
     this.insertProductForm = new FormGroup({
       nome: new FormControl(''),
       marca: new FormControl(''),
@@ -112,5 +118,40 @@ export class AdminPageComponent implements OnInit {
         this.allProducts = products.body!;
       }
     });
+  }
+
+  getNonActiveUsers() {
+    this.serverConnect.getNonActiveUsers().subscribe({
+      next: u => {
+        this.userList = u.body!;
+        console.log(this.userList.length)
+      }
+    })
+  }
+
+  getOneUser(id: number) {
+    this.serverConnect.getOneUser(id).subscribe({
+      next: p => {
+        this.oneUser = p.body!;
+      }
+    })
+  }
+
+  deleteUser(userId : number) {
+    this.serverConnect.deleteUserFromDatabase(userId).subscribe({
+      next : p => {
+        this.getNonActiveUsers();
+      }});
+  }
+
+  authorizeUser(userId : number) {
+    this.getOneUser(userId);
+    this.oneUser.active = true;
+    this.serverConnect.authorizeUserInSite(userId, this.oneUser).subscribe({
+      next : i => {
+        this.getNonActiveUsers();
+      }
+    });
+    
   }
 }
