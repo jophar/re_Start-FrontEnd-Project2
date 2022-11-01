@@ -1,6 +1,7 @@
 import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { LocalService } from '../local-strorage.service';
 import { JsonService } from '../shared/json.service';
 import { Product } from '../shared/product';
 
@@ -11,7 +12,9 @@ import { Product } from '../shared/product';
 })
 export class ProductBrowseComponent implements OnInit{
 
-  constructor(private actRoute: ActivatedRoute, private serverConnect: JsonService) { }
+  constructor(private actRoute: ActivatedRoute, private serverConnect: JsonService, private l : LocalService) { }
+
+  currentUserId!: string;
 
   currentProductSubType : string = "";
   currentProductSubTypeCorrected : string = "";
@@ -110,8 +113,12 @@ export class ProductBrowseComponent implements OnInit{
   }
 
   addToWishlist(id : number) {
-    if(!this.starActive[id]) { this.starActive[id] = true; }
-      else { this.starActive[id] = false; }
+    if(!this.starActive[id]) { 
+      this.starActive[id] = true;
+    }
+      else { 
+        this.starActive[id] = false; 
+      }
   }
 }
 
