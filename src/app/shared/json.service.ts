@@ -64,7 +64,11 @@ import { User } from './user';
     }
 
     insertUserToDatabase(u : User) {
-      return this.http.post<User>(this.urlApiUsers, u);
+      return this.http.post<User>(this.urlApiUsers, u, { observe : 'response' });
+    }
+
+    searchProduct(search: string) {
+      return this.http.get<Product[]>(`${this.urlApiProducts}?nome_like=${search}`, { observe : 'response' });
     }
   }
   

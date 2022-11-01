@@ -39,26 +39,35 @@
                 </div>
             </tr>
         </table>
-
         <button type="submit" class="btn btn-danger">Inserir Produto</button>
-
     </form>
 
 
     <div *ngIf = "this.productInsertOk == 1" class="alert alert-success" role="alert">
         <h3>{{returnMessage}}</h3>
     </div>
-
     <div *ngIf = "this.productInsertOk == 2" class="alert alert-danger" role="alert">
         <h3>{{returnMessage}}</h3>
     </div>
 
-    <div>
-        <label>Pesquisa: </label><input type="text"><button type="button" class="btn btn-danger">Pesquisar</button>
+    <div class = "pesquisar">
+        <label for="search">Pesquisa:</label>
+        <input type="text" id = "search" #search>
+        <button type="button" class="btn btn-danger" (click)="searchProduct(search.value)">Pesquisar</button>
     </div>
             
     <!-- DEVIA COMEÇAR OUTRO COMPONENTE AQUI -->
 
+    <!--    Sistema de paginação do Bootstrap para Angular
+            não é o ideal mas funciona 
+        -->
+    <ngb-pagination 
+        [pageSize] = "5" 
+        [collectionSize]="activeProductsNumber" 
+        [(page)]="page" 
+        aria-label="Default pagination" >
+    </ngb-pagination>
+    
     <table class="table table-striped">
         <thead class = "align-middle tableHead">
           <tr>
@@ -74,7 +83,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let product of allProducts; index as i">
+          <tr *ngFor="let product of allProducts | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize; index as i">
             <td>
                 <div (mouseenter)="secondImage[i] = true" (mouseleave)="secondImage[i] = false">
                         <div *ngIf="!secondImage[i]"><img src="../../assets/img/{{ product.foto_principal }}"></div>

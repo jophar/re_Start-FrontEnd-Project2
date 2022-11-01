@@ -22,6 +22,8 @@ export class HeaderComponent implements OnInit {
   kinderSubMenu : string[] = ["Menina | 6-14 Anos", "Menino | 6-14 Anos", "Bebé Menina | 3 Meses - 5 Anos", "Bebé Menino | 3 Meses - 5 Anos", "Mini | 0-12 Meses"];
   accessoriesSubMenu : string [] = ["Malas", "Pulseiras", "Aneis"];
 
+  registerSuccess! : boolean;
+
   closeResult = '';
 
   constructor(private modalService: NgbModal, private serverConnect: JsonService) { 
@@ -74,9 +76,12 @@ export class HeaderComponent implements OnInit {
 	}
 
   registerUser() {
-      this.serverConnect.insertUserToDatabase(this.registerForm.value).subscribe(registoInserido => {
-        console.log(registoInserido);
-        console.log("ESTOU AQUI!");
+      this.serverConnect.insertUserToDatabase(this.registerForm.value).subscribe(async registoInserido => {
+        let dataReturn = registoInserido;
+        if(dataReturn.status === 201) {
+          this.registerSuccess = true;
+        }
+
     });
   }
 

@@ -103,7 +103,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="morada" class="form-label">Morada</label>
-                    <input type="text" class="form-control" formControlName ="morada" id="morawda">
+                    <input type="text" class="form-control" formControlName ="morada" id="morada">
                 </div>
                 <div class="mb-3">
                     <label for="codigoPostal" class="form-label">Código Postal</label>
@@ -116,7 +116,13 @@
               </form>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-danger" (click)="registerUser()">Registar</button>
+            <button type="button" class="btn btn-danger" (click)="registerUser(); modal.close('Save click')">Registar</button>
         </div>
+
+        <div *ngIf = "registerSuccess === true" class="alert alert-success alert-dismissible sucesso">
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <strong>Success!</strong> This alert box could indicate a successful or positive action.
+        </div>
+
     </ng-template>
 </nav>

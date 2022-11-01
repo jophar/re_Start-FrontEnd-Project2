@@ -158,30 +158,6 @@
     },
     {
       "nome": "das",
-      "marca": "abc",
-      "tipo_de_produto": "Casaco",
-      "cor": "321",
-      "preco": "123",
-      "descricao": "1",
-      "destaque": "",
-      "foto_principal": "no_image_yet.jpg",
-      "foto_secundaria": "no_image_yet_2.jpg",
-      "id": 15
-    },
-    {
-      "nome": "das",
-      "marca": "teste",
-      "tipo_de_produto": "Camisa",
-      "cor": "321",
-      "preco": "1",
-      "descricao": "123",
-      "destaque": "",
-      "foto_principal": "no_image_yet.jpg",
-      "foto_secundaria": "no_image_yet_2.jpg",
-      "id": 16
-    },
-    {
-      "nome": "das",
       "marca": "teste",
       "tipo_de_produto": "Casaco",
       "cor": "321",
@@ -215,6 +191,50 @@
       "pais": "Portugal",
       "active": true,
       "admin": true
+    },
+    {
+      "nome": "teste",
+      "email": "teste",
+      "senha": "teste",
+      "morada": "teste",
+      "codigoPostal": "1234-123",
+      "pais": "Portugal",
+      "active": false,
+      "admin": false,
+      "id": 3
+    },
+    {
+      "nome": "ewqeqw",
+      "email": "ewqeqe",
+      "senha": "qweqewwq",
+      "morada": "eqwqwewq",
+      "codigoPostal": "4700-194",
+      "pais": "ewqeq",
+      "active": false,
+      "admin": false,
+      "id": 4
+    },
+    {
+      "nome": "321",
+      "email": "321",
+      "senha": "321",
+      "morada": "321",
+      "codigoPostal": "4700-194",
+      "pais": "321",
+      "active": false,
+      "admin": false,
+      "id": 5
+    },
+    {
+      "nome": "das",
+      "email": "321",
+      "senha": "321",
+      "morada": "321",
+      "codigoPostal": "312",
+      "pais": "321",
+      "active": false,
+      "admin": false,
+      "id": 6
     }
   ]
 }

@@ -18,9 +18,9 @@ export class AdminPageComponent implements OnInit {
   productId = (item: Product): number => item.id!;
 
   insertProductForm! : FormGroup;
-
+  pageSize = 5;
   returnMessage : string = "";
-
+  activeProductsNumber : number = 0;
   product! : Product;
   productToInsert! : Product;
   allProducts! : Product[];
@@ -32,11 +32,15 @@ export class AdminPageComponent implements OnInit {
 
   numberOfHighlights : number = 0;
 
+  productsPerPage : number = 5;
+  numberOfPages : number = 0;
+
+  page = 1;
+
   constructor(private serverConnect: JsonService) { }
 
   ngOnInit(): void {
     this.getAllProducts();
-
     this.insertProductForm = new FormGroup({
       nome: new FormControl(''),
       marca: new FormControl(''),
@@ -51,14 +55,9 @@ export class AdminPageComponent implements OnInit {
   }
 
   insertProduct() {
-
-    console.log(this.numberOfHighlights);
-    console.log(this.insertProductForm.value);
     if (this.insertProductForm.valid && this.numberOfHighlights < 8) {
-
       this.serverConnect.insertProductToDatabase(this.insertProductForm.value).subscribe(async registoInserido => {
         let dataReturn = registoInserido;
-
         if (dataReturn.status === 201) {
           console.log(this.insertProductForm.value.foto_principal);
           this.insertProductForm.reset({foto_principal: "no_image_yet.jpg", foto_secundaria: "no_image_yet_2.jpg"});
@@ -69,8 +68,7 @@ export class AdminPageComponent implements OnInit {
         else{
           this.productInsertOk = 2;
           this.returnMessage = "Erro na ligação à base de dados";
-        }
-      });
+        }});
     }
     else {
       this.productInsertOk = 2;
@@ -91,12 +89,12 @@ export class AdminPageComponent implements OnInit {
         this.allProducts = p.body!;
         this.getTypeList();
         this.numberOfHighlights = 0;
+        this.activeProductsNumber = this.allProducts.length;
 
         for(let pro of this.allProducts){  
           if(pro.destaque == true)
            this.numberOfHighlights++;
         }
-        
       }});
   }
 
@@ -107,4 +105,12 @@ export class AdminPageComponent implements OnInit {
       this.deleteConfirm = [];
     }});
  }
+
+ searchProduct(searchString : string) {
+  this.serverConnect.searchProduct(searchString).subscribe({
+      next: products => {
+        this.allProducts = products.body!;
+      }
+    });
+  }
 }
