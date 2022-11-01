@@ -27,3 +27,12 @@ img {
     align-content:center;
     max-width: 80px;
 }
+
+.pesquisar {
+    margin: 20px 0px 20px 0px;
+}
+
+.pagination > .active > a , .pagination > .active > a:hover, .pagination > .active > a:focus {
+    background-color: orange;
+    border-color: orange;
+}

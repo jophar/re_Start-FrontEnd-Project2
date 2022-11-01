@@ -101,3 +101,9 @@
 .tooltip:hover .tooltiptext {
     visibility: visible;
 }
+
+.sucesso {
+    position: fixed;
+    top: 10px;
+    left: 30px;
+}
