@@ -27,12 +27,12 @@
         </div>
 
         <div class="viewContainer">
-            <div class = "productCard" *ngFor="let product of activeProducts">
+            <div class = "productCard" *ngFor="let product of activeProducts; index as i">
                 <a [routerLink]="['/productDetail', product.id ]" routerLinkActive="active" >
                     <app-product-card [productInfo]="product"></app-product-card>
                 </a>
-                <div class = "star" (click)="addToWishlist(product.id!)">
-                    <i class="far fa-star" *ngIf="!starActive"></i><i class="fas fa-star" *ngIf="starActive"></i>
+                <div class = "star" (click)="addToWishlist(i)">
+                    <i class="far fa-star" *ngIf="!starActive[i]"></i><i class="fas fa-star" *ngIf="starActive[i]"></i>
                 </div>    
 
             </div>

@@ -32,7 +32,7 @@ export class ProductBrowseComponent implements OnInit{
   accessoriesSubMenu : string [] = ["Malas", "Pulseiras", "Aneis"];
   accessoriesSubMenuDB : string [] = ["Mala", "Pulseira", "Anel"];
 
-  starActive : Boolean = false;
+  starActive : Boolean[] = [];
 
   start : number = 0;
   numRecords : number = 6;
@@ -110,8 +110,8 @@ export class ProductBrowseComponent implements OnInit{
   }
 
   addToWishlist(id : number) {
-    if(!this.starActive) { this.starActive = true; }
-      else { this.starActive = false; }
+    if(!this.starActive[id]) { this.starActive[id] = true; }
+      else { this.starActive[id] = false; }
   }
 }
 
