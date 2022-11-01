@@ -15,6 +15,14 @@ export class AuthorizationService {
     }
 
     isAutenticaded() {
-        return this.isUserLoggedIn
+        return this.isUserLoggedIn;
+    }
+
+    athenticate() {
+        this.isUserLoggedIn = true;
+    }
+
+    logout() {
+        this.isUserLoggedIn = false;
     }
 }

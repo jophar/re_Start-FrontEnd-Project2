@@ -50,6 +50,10 @@ import { User } from './user';
       return this.http.get<User>(`${this.urlApiUsers}/${id}`, { observe : 'response' });
     }
 
+    getPassFromUser(s: string) {
+      return this.http.get<User>(`${this.urlApiUsers}?email=${s}`);
+    }
+
     getNonActiveUsers() {
       return this.http.get<User[]>(`${this.urlApiUsers}?active=false`, { observe : 'response' });
     }

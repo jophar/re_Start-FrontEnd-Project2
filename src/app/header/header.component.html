@@ -7,35 +7,40 @@
 
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav mainMenu">
-                <li class="nav-item dropdown"><a class="nav-link" href="#">Homem</a>
+                <li class="nav-item dropdown"><a class="nav-link menuTop">Homem</a>
                     <ul class="dropdown-menu">
                         <li *ngFor="let menuItem of maleSubMenu">
-                            <a class="dropdown-item" [routerLink]="['/productBrowse', 'Homem', menuItem ]" routerLinkActive="active">{{ menuItem }}</a>
+                            <a class="dropdown-item" [routerLink]="['/productBrowse', 'Homem', menuItem ]"
+                                routerLinkActive="active">{{ menuItem }}</a>
                         </li>
                     </ul>
                 </li>
                 <li>|</li>
-                <li class="nav-item dropdown"><a class="nav-link" href="#">Mulher</a>
+                <li class="nav-item dropdown"><a class="nav-link menuTop">Mulher</a>
                     <ul class="dropdown-menu">
                         <li *ngFor="let menuItem of womanSubMenu">
-                            <a class="dropdown-item" [routerLink]="['/productBrowse', 'Mulher', menuItem ]" routerLinkActive="active">{{ menuItem }}</a>
+                            <a class="dropdown-item" [routerLink]="['/productBrowse', 'Mulher', menuItem ]"
+                                routerLinkActive="active">{{ menuItem }}</a>
                         </li>
                     </ul>
                 </li>
 
-                <li><a href="#"><img src="../../assets/img/H&M-Logo.svg" width="100px" height="50px"></a></li>
-                <li class="nav-item dropdown"><a class="nav-link" href="#">Criança</a>
+                <li><a [routerLink]="['']"><img src="../../assets/img/H&M-Logo.svg" width="100px" height="50px"></a>
+                </li>
+                <li class="nav-item dropdown"><a class="nav-link menuTop">Criança</a>
                     <ul class="dropdown-menu">
                         <li *ngFor="let menuItem of kinderSubMenu">
-                            <a class="dropdown-item" [routerLink]="['/productBrowse', 'Criança', menuItem ]" routerLinkActive="active">{{ menuItem }}</a>
+                            <a class="dropdown-item" [routerLink]="['/productBrowse', 'Criança', menuItem ]"
+                                routerLinkActive="active">{{ menuItem }}</a>
                         </li>
                     </ul>
                 </li>
                 <li>|</li>
-                <li class="nav-item dropdown"><a href="#" class="nav-link" data-toggle="dropdown">Acessórios</a>
+                <li class="nav-item dropdown"><a class="nav-link menuTop" data-toggle="dropdown">Acessórios</a>
                     <ul class="dropdown-menu">
                         <li *ngFor="let menuItem of accessoriesSubMenu">
-                            <a class="dropdown-item" [routerLink]="['/productBrowse', 'Acessórios', menuItem ]" routerLinkActive="active">{{ menuItem }}</a>
+                            <a class="dropdown-item" [routerLink]="['/productBrowse', 'Acessórios', menuItem ]"
+                                routerLinkActive="active">{{ menuItem }}</a>
                         </li>
                     </ul>
                 </li>
@@ -43,83 +48,88 @@
             </ul>
         </div>
 
-        <div class="loginMenu">
-            <i class="fa-regular fa-clipboard fa-lg" style="margin-left: 100px; margin-right: 20px;"></i>
+        <div class="rightMenu" *ngIf="isUserLoggedIn; else loggedout">
+            <i style="font-size: 12px;">Benvindo(a), {{loggedUserName}}</i>
+            <i class="fa-regular fa-clipboard fa-lg" style="margin-left: 20px; margin-right: 20px;"></i>
             <i class="fa-regular fa-user fa-lg" style="margin-right: 20px;"></i>
-            <i class="fa-solid fa-arrow-right-from-bracket fa-lg"></i>
+            <i class="fa-solid fa-arrow-right-from-bracket fa-lg" (click)="logout()"></i>
         </div>
 
-        <div class="registerMenu">
-
+        <ng-template #loggedout>
+            <div class="rightMenu">
                 <i class="fa-solid fa-user-plus fa-lg" (click)="open(register)"></i>
-
-
-            <i
-                class="fa-solid fa-arrow-right-to-bracket fa-lg" 
-                style="margin-left: 20px;" 
-                (click)="open(login)">
-            </i>   
-        </div>
+                <i class="fa-solid fa-arrow-right-to-bracket fa-lg" style="margin-left: 20px;"
+                    (click)="open(login)"></i>
+            </div>
+        </ng-template>
     </div>
 
     <ng-template #login let-modal>
+
         <div class="modal-header">
             <h4 class="modal-title" id="modal-basic-title">Controlo de Acessos</h4>
         </div>
+
         <div class="modal-body">
-            <form [formGroup]="loginValidation">
+            <form [formGroup]="loginForm">
                 <div class="mb-3">
-                  <label for="email" class="form-label">E-mail</label>
-                  <input type="email" class="form-control" id="email">
+                    <label for="email" class="form-label">E-mail</label>
+                    <input type="email" class="form-control" id="email" formControlName="email">
                 </div>
                 <div class="mb-3">
-                  <label for="senha" class="form-label">Password</label>
-                  <input type="password" class="form-control" id="senha">
+                    <label for="senha" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="senha" formControlName="senha">
                 </div>
-              </form>
+            </form>
         </div>
+
         <div class="modal-footer">
-            <button type="button" class="btn btn-danger" (click)="modal.close('Save click')">Validar</button>
+            <button type="button" class="btn btn-danger"
+                (click)="checkLogin(); modal.close('Save click')">Validar</button>
         </div>
     </ng-template>
 
     <ng-template #register let-modal>
+
         <div class="modal-header">
             <h4 class="modal-title" id="modal-basic-title">Registo Utilizador</h4>
         </div>
+
         <div class="modal-body">
             <form [formGroup]="registerForm">
                 <div class="mb-3">
-                  <label for="nome" class="form-label">Nome</label>
-                  <input type="text" formControlName ="nome" class="form-control" id="nome">
+                    <label for="nome" class="form-label">Nome</label>
+                    <input type="text" formControlName="nome" class="form-control" id="nome">
                 </div>
                 <div class="mb-3">
-                  <label for="email" class="form-label">E-mail</label>
-                  <input type="email" formControlName ="email" class="form-control" id="email">
+                    <label for="email" class="form-label">E-mail</label>
+                    <input type="email" formControlName="email" class="form-control" id="email">
                 </div>
                 <div class="mb-3">
                     <label for="senha" class="form-label">Senha</label>
-                    <input type="password" formControlName ="senha" class="form-control" id="senha">
+                    <input type="password" formControlName="senha" class="form-control" id="senha">
                 </div>
                 <div class="mb-3">
                     <label for="morada" class="form-label">Morada</label>
-                    <input type="text" class="form-control" formControlName ="morada" id="morada">
+                    <input type="text" class="form-control" formControlName="morada" id="morada">
                 </div>
                 <div class="mb-3">
                     <label for="codigoPostal" class="form-label">Código Postal</label>
-                    <input type="text" class="form-control" formControlName ="codigoPostal" id="codigoPostal">
+                    <input type="text" class="form-control" formControlName="codigoPostal" id="codigoPostal">
                 </div>
                 <div class="mb-3">
                     <label for="pais" class="form-label">País</label>
-                    <input type="text" class="form-control" formControlName ="pais" id="pais">
+                    <input type="text" class="form-control" formControlName="pais" id="pais">
                 </div>
-              </form>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-danger" (click)="registerUser(); modal.close('Save click')">Registar</button>
+            </form>
         </div>
 
-        <div *ngIf = "registerSuccess === true" class="alert alert-success alert-dismissible sucesso">
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger"
+                (click)="registerUser(); modal.close('Save click')">Registar</button>
+        </div>
+
+        <div *ngIf="registerSuccess === true" class="alert alert-success alert-dismissible sucesso">
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
             <strong>Success!</strong> This alert box could indicate a successful or positive action.
         </div>

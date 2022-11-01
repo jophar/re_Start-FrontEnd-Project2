@@ -15,7 +15,7 @@ const routes: Routes = [
   { path : 'productBrowse/:type/:subMenu', component : ProductBrowseComponent },
   { path : 'register', component : RegisterComponent},
   { path : 'login', component : LoginComponent},
-  { path : 'admin', component : AdminPageComponent/*, canActivate:[AuthorizationGuard] */},
+  { path : 'admin', component : AdminPageComponent, canActivate:[AuthorizationGuard] },
   { path :  '**', component : ErrorComponentComponent}
 ];
 

@@ -17,7 +17,7 @@ export class AuthorizationGuard implements CanActivate {
       return true;
     }
     else {
-      this.router.navigate(['/register']);
+      this.router.navigate(['']);
     }
     return false;
   }
